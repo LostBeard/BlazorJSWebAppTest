@@ -1,0 +1,22 @@
+﻿@using SpawnDev.BlazorJS;
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
+
+<h1>Wasm Component</h1>
+
+Component RenderMode: @(OperatingSystem.IsBrowser() ? "WebAssembly" : "Server")
+<br />
+InnerHeight: @InnerHeight
+
+@code {
+
+    [Inject]
+    BlazorJSRuntime JS { get; set; }
+
+    int InnerHeight = -1;
+
+    protected override void OnInitialized()
+    {
+        InnerHeight = JS.Get<int>("window.innerHeight");
+        JS.Set("document.title", "Hello world from wasm component!");
+    }
+}

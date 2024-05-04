@@ -1,0 +1,16 @@
+﻿@page "/server"
+@attribute [StreamRendering]
+
+<PageTitle>Server Page</PageTitle>
+
+<h1>Server Page</h1>
+
+<p>This component demonstrates a server page with an embedded WASM component</p>
+
+Page RenderMode: @(OperatingSystem.IsBrowser() ? "WebAssembly" : "Server")
+
+<h3>(Wasm Component Below)</h3>
+
+<div style="border: 1px solid black;">
+    <BlazorJSWebAppTest.Client.Components.WasmComponent></BlazorJSWebAppTest.Client.Components.WasmComponent>
+</div>
